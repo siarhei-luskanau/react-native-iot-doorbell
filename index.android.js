@@ -6,9 +6,11 @@ import ReactNative, {
   StyleSheet,
   Text,
   ListView,
+  ToastAndroid,
   View
 } from 'react-native';
 import Firebase from "firebase";
+const ListItem = require('./components/ListItem');
 
 Firebase.initializeApp({
  apiKey: "AIzaSyA5rK5JDZFjY5SpIL5FwlXhx8Sty-k9FBs",
@@ -25,7 +27,7 @@ export default class ReactNativeIotDoorbell extends Component {
 
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: ds.cloneWithRows(['row 1', 'row 2']),
+      dataSource: ds.cloneWithRows([]),
     };
 
     this.devicesRef = Firebase.database().ref('doorbell_app/devices');
@@ -51,8 +53,21 @@ export default class ReactNativeIotDoorbell extends Component {
       <View style={styles.container}>
         <ListView
           dataSource={this.state.dataSource}
-          renderRow={(rowData) => <Text>{rowData}</Text>} />
+          renderRow={this._renderItem.bind(this)}
+          enableEmptySections={true} />
       </View>
+    );
+  }
+
+  _renderItem(item) {
+
+    const onPress = () => {
+      console.log(`ListItem: ${item}`)
+      ToastAndroid.show(`ListItem: ${item}`, ToastAndroid.SHORT);
+    };
+
+    return (
+      <ListItem item={item} onPress={onPress} />
     );
   }
 
