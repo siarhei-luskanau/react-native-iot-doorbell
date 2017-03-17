@@ -1,0 +1,3 @@
+rootProject.name = 'ReactNativeIotDoorbell'
+
+include ':app'
