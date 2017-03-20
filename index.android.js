@@ -8,9 +8,13 @@ import ReactNative, {
   ToastAndroid,
   View
 } from 'react-native';
+import { StackNavigator } from 'react-navigation';
 import Firebase from "firebase";
+
 const ListItem = require('./components/ListItem');
-const styles = require('./styles.js')
+const HomeScreen = require('./components/HomeScreen');
+const ChatScreen = require('./components/ChatScreen');
+const styles = require('./styles')
 
 Firebase.initializeApp({
  apiKey: "AIzaSyA5rK5JDZFjY5SpIL5FwlXhx8Sty-k9FBs",
@@ -20,7 +24,12 @@ Firebase.initializeApp({
     messagingSenderId: "443316178527"
 });
 
-export default class ReactNativeIotDoorbell extends Component {
+const ReactNativeIotDoorbell = StackNavigator({
+  Home: {screen: HomeScreen},
+  Chat: {screen: ChatScreen},
+});
+
+export default class ReactNativeIotDoorbell_1 extends Component {
 
  constructor() {
     super();
