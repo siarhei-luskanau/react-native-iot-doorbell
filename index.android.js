@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import ReactNative, {
   AppRegistry,
-  StyleSheet,
   Text,
   ListView,
   ToastAndroid,
@@ -11,6 +10,7 @@ import ReactNative, {
 } from 'react-native';
 import Firebase from "firebase";
 const ListItem = require('./components/ListItem');
+const styles = require('./styles.js')
 
 Firebase.initializeApp({
  apiKey: "AIzaSyA5rK5JDZFjY5SpIL5FwlXhx8Sty-k9FBs",
@@ -54,7 +54,8 @@ export default class ReactNativeIotDoorbell extends Component {
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this._renderItem.bind(this)}
-          enableEmptySections={true} />
+          enableEmptySections={true}
+          style={styles.listview}/>
       </View>
     );
   }
@@ -75,14 +76,5 @@ export default class ReactNativeIotDoorbell extends Component {
     this.listenForDoorbellRef();
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-});
 
 AppRegistry.registerComponent('ReactNativeIotDoorbell', () => ReactNativeIotDoorbell);
