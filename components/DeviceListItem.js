@@ -1,9 +1,9 @@
 'use strict';
 
-import React, {Component} from 'react';
+import React from 'react';
 import ReactNative, { View, TouchableHighlight, Text } from 'react-native';
 
-class ListItem extends Component {
+class DeviceListItem extends React.Component {
   render() {
     return (
       <TouchableHighlight onPress={this.props.onPress}>
@@ -15,4 +15,4 @@ class ListItem extends Component {
   }
 }
 
-module.exports = ListItem;
+module.exports = DeviceListItem;
