@@ -37,7 +37,7 @@ class ImagesListScreen extends React.Component {
       var items = [];
       snapshot.forEach((child) => {
         console.log(`ImagesList:${child.val().image_id}`)
-        items.push(child.val().image_id);
+        items.push(child.val().image);
       });
 
       this.setState({dataSource: this.state.dataSource.cloneWithRows(items)});
